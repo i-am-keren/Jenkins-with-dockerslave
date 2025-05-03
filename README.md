@@ -1,21 +1,47 @@
-# Jenkins Installation with Docker Agent on Ubuntu
+# Jenkins + Docker Agent Setup
 
-This guide helps you install Jenkins on an Ubuntu server, expose it publicly (port 8080), and configure Docker as a Jenkins agent.
+This guide sets up Jenkins on an Ubuntu-based server, exposes it to the internet, and configures Docker as a Jenkins agent.
 
 ---
 
 ## 🔧 Requirements
 
-- Ubuntu 20.04+ VM or server
-- Open port 8080 (inbound rule in your cloud/VPC firewall)
-- Internet access on the server
+- Ubuntu 20.04+ server
+- SSH access
+- Docker installed
+- Open port 8080 (default Jenkins port)
+- Ansible or Bash (depending on your preferred method)
 
 ---
 
-## 🚀 Setup Instructions
+## 🚀 Steps
 
-### 1. Update System & Install Java
+### 1. Install Jenkins
 
-```bash
-sudo apt update
-sudo apt install -y openjdk-11-jdk
+- Install Java
+- Add Jenkins repository
+- Install Jenkins
+- Start and enable the Jenkins service
+
+### 2. Expose Jenkins to the Internet
+
+- Open port 8080 in your firewall
+- Or use Nginx reverse proxy (optional)
+- Get your server IP and access `http://<your-ip>:8080`
+
+### 3. Setup Docker
+
+- Install Docker on the same or another machine
+- Add the Jenkins user to the Docker group
+
+### 4. Configure Docker Agent in Jenkins
+
+- Go to **Manage Jenkins > Manage Nodes and Clouds**
+- Add a new node
+- Set up a Docker-based agent with the appropriate labels
+- Use Docker socket bind mount or Docker plugin
+
+---
+
+## 📂 File Structure
+
